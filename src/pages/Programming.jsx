@@ -2,7 +2,7 @@ import { useNewsApi } from '../hooks/useNewsApi';
 import NewsCard from '../components/NewsCard';
 
 function Programming() {
-  const { data: articles, isLoading, error } = useNewsApi('Web Log');
+  const { data: articles, isLoading, error } = useNewsApi('programmer');
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
