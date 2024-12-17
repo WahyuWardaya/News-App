@@ -18,7 +18,7 @@ function Search() {
       {articles.length === 0 ? (
         <p className="text-muted">No results found.</p>
       ) : (
-        <div className="row">
+        <div className="row justify-content-center">
           {articles.map((article) => (
             <div key={article._id} className="col-md-4 mb-2">
               <NewsCard article={article} />
