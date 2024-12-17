@@ -14,7 +14,7 @@ function NewsCard({ article }) {
   const placeholderImage = 'https://via.placeholder.com/300x150?text=No+Image';
 
   return (
-    <div className="card mb-4" style={{ height: '600px', display: 'flex', flexDirection: 'column' }}>
+    <div className="card mb-4" style={{ height: '600px'}}>
       <img
         src={article.multimedia?.[0]?.url ? `https://www.nytimes.com/${article.multimedia[0].url}` : placeholderImage}
         alt={article.headline.main}
@@ -24,7 +24,7 @@ function NewsCard({ article }) {
           objectFit: 'cover',
         }}
       />
-      <div className="card-body d-flex flex-column">
+      <div className="card-body d-flex flex-column ">
         <h5 className="card-title" style={{ fontSize: '1.2rem' }}>
           {article.headline.main}
         </h5>

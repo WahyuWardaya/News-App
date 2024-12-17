@@ -14,11 +14,11 @@ function Saved() {
 
   return (
     <div>
-      <h1 style={{ textAlign: 'left', margin: '20px 0', fontWeight: 'bold' }}>Saved Articles</h1>
+      <h1 style={{ textAlign: 'left', margin: '20px 0'}}>Saved Articles</h1>
       {savedArticles.length === 0 ? (
         <p style={{ textAlign: 'left', fontSize: '1.2rem' }}>No saved articles yet.</p>
       ) : (
-        <div className="d-flex flex-wrap">
+        <div className="d-flex flex-wrap justify-content-center">
           {savedArticles.map((article, index) => (
             <div key={article._id} className="card mb-4" style={{ width: '400px', margin: '10px', height: '600px', display: 'flex', flexDirection: 'column', order: index }}>
               <img

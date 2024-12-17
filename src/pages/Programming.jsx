@@ -10,7 +10,7 @@ function Programming() {
   return (
     <div className="container mt-4">
       <h1>Programming News</h1>
-      <div className="row">
+      <div className="row d-flex justify-content-center">
         {articles.map((article) => (
           <div key={article._id} className="col-md-4">
             <NewsCard article={article} />
