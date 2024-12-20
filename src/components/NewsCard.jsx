@@ -7,11 +7,9 @@ function NewsCard({ article }) {
   const savedArticles = useSelector((state) => state.saved.articles);
   const isSaved = savedArticles.some((savedArticle) => savedArticle._id === article._id);
 
-  // State for the button
   const [buttonText, setButtonText] = useState(isSaved ? 'Unsave' : 'Save');
   const [buttonClass, setButtonClass] = useState(isSaved ? 'btn-danger' : 'btn-success');
 
-  // Update the button text and class whenever isSaved changes
   useEffect(() => {
     setButtonText(isSaved ? 'Unsave' : 'Save');
     setButtonClass(isSaved ? 'btn-danger' : 'btn-success');
@@ -19,10 +17,10 @@ function NewsCard({ article }) {
 
   const handleToggleSave = () => {
     if (isSaved) {
-      dispatch(unsaveArticle(article)); // Remove the article from saved
+      dispatch(unsaveArticle(article));
       alert('Article Unsaved');
     } else {
-      dispatch(saveArticle(article)); // Save the article
+      dispatch(saveArticle(article));
       alert('Article Saved');
     }
   };
@@ -30,7 +28,7 @@ function NewsCard({ article }) {
   const placeholderImage = 'https://via.placeholder.com/300x150?text=No+Image';
 
   return (
-    <div className="card mb-4" style={{ height: '600px' }}>
+    <div className="card mb-4" style={{ height: '580px' }}>
       <img
         src={article.multimedia?.[0]?.url ? `https://www.nytimes.com/${article.multimedia[0].url}` : placeholderImage}
         alt={article.headline.main}

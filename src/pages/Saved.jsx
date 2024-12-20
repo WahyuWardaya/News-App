@@ -20,7 +20,7 @@ function Saved() {
       ) : (
         <div className="d-flex flex-wrap justify-content-center">
           {savedArticles.map((article, index) => (
-            <div key={article._id} className="card mb-4" style={{ width: '400px', margin: '10px', height: '600px', display: 'flex', flexDirection: 'column', order: index }}>
+            <div key={article._id} className="card mb-4" style={{ width: '400px', margin: '10px', height: '580px', display: 'flex', flexDirection: 'column', order: index }}>
               <img
                 src={article.multimedia?.[0]?.url ? `https://www.nytimes.com/${article.multimedia[0].url}` : placeholderImage}
                 alt={article.headline.main}
