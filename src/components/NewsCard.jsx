@@ -1,20 +1,36 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { saveArticle } from '../store/savedSlice';
+import { saveArticle, unsaveArticle } from '../store/savedSlice';
+import { useState, useEffect } from 'react';
 
 function NewsCard({ article }) {
   const dispatch = useDispatch();
   const savedArticles = useSelector((state) => state.saved.articles);
-  const isSaved = savedArticles.some((savedArticle) => savedArticle.url === article.web_url);
+  const isSaved = savedArticles.some((savedArticle) => savedArticle._id === article._id);
 
-  const handleSave = () => {
-    dispatch(saveArticle(article));
-    alert('Saved Success');
+  // State for the button
+  const [buttonText, setButtonText] = useState(isSaved ? 'Unsave' : 'Save');
+  const [buttonClass, setButtonClass] = useState(isSaved ? 'btn-danger' : 'btn-success');
+
+  // Update the button text and class whenever isSaved changes
+  useEffect(() => {
+    setButtonText(isSaved ? 'Unsave' : 'Save');
+    setButtonClass(isSaved ? 'btn-danger' : 'btn-success');
+  }, [isSaved]);
+
+  const handleToggleSave = () => {
+    if (isSaved) {
+      dispatch(unsaveArticle(article)); // Remove the article from saved
+      alert('Article Unsaved');
+    } else {
+      dispatch(saveArticle(article)); // Save the article
+      alert('Article Saved');
+    }
   };
 
   const placeholderImage = 'https://via.placeholder.com/300x150?text=No+Image';
 
   return (
-    <div className="card mb-4" style={{ height: '600px'}}>
+    <div className="card mb-4" style={{ height: '600px' }}>
       <img
         src={article.multimedia?.[0]?.url ? `https://www.nytimes.com/${article.multimedia[0].url}` : placeholderImage}
         alt={article.headline.main}
@@ -24,7 +40,7 @@ function NewsCard({ article }) {
           objectFit: 'cover',
         }}
       />
-      <div className="card-body d-flex flex-column ">
+      <div className="card-body d-flex flex-column">
         <h5 className="card-title" style={{ fontSize: '1.2rem' }}>
           {article.headline.main}
         </h5>
@@ -35,11 +51,9 @@ function NewsCard({ article }) {
           <a href={article.web_url} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
             News Page
           </a>
-          {!isSaved && (
-            <button onClick={handleSave} className="btn btn-success">
-              Save
-            </button>
-          )}
+          <button onClick={handleToggleSave} className={`btn ${buttonClass}`}>
+            {buttonText}
+          </button>
         </div>
       </div>
     </div>
